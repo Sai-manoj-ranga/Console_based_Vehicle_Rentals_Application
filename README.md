@@ -68,26 +68,15 @@ java com.proof_of_concepts.RSM_Vehicle_Rentals
 
 *(All amounts are illustrative POC values, not real market rates.)*
 
-## Known Limitations
-
-This is a first-pass POC and has a few rough edges worth noting before extending it:
-
-- **Typo mismatch:** the Cars menu prints `LAMBORGIHINI`, but the underlying `switch` case checks for `LAMBORGHINI` — typing the option exactly as displayed will incorrectly fall through to "not available."
-- **Driver count is asked once per category, not per individual vehicle** — if multiple vehicles are booked within the same category visit, driver pay is calculated using the last entered `num_days` for that category pass, not per vehicle.
-- **High code duplication** — each vehicle/model case repeats the same "print, compute rent, store, increment" logic. This makes the catalog hard to extend and a good candidate for refactoring into a data-driven structure (e.g., a `Map<String, Double>` of model → rate, or a `Vehicle` record class) rather than nested `switch` statements.
-- **No input validation/error handling** for non-numeric input (e.g., entering text where `nextInt()`/`nextDouble()` is expected will throw an `InputMismatchException` and crash the program).
-- **No persistence** — bookings exist only in memory for the current run; nothing is saved to a file or database.
-- **No unit tests** included.
-
 ## Suggested Next Steps
 
 - Refactor the vehicle catalog into a config-driven structure (map, enum, or class) to eliminate repeated code and make adding new vehicles trivial.
-- Fix the Lamborghini typo.
 - Add input validation with try/catch around `Scanner` reads.
 - Move driver-hiring logic to be per-vehicle rather than per-category.
 - Add persistence (e.g., write bookings to a CSV or simple database) if this evolves beyond a POC.
 - Add unit tests around the rent calculation logic.
 
 ## License / Status
+RANGA SAI MANOJ
 
 Internal proof-of-concept — not intended for production use.
